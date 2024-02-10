@@ -18,3 +18,7 @@ body {
 .square {
   flex: 0 0 6.25%;
 }
+
+.color {
+  background-color: gray;
+}
