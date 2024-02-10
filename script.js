@@ -10,8 +10,19 @@ function generateSquares(squaresPerSide) {
   for (let i = 0; i < squares; i++) {
     const square = document.createElement("div");
     square.style.flexBasis = `${100 / squaresPerSide}%`;
-    square.addEventListener("mouseenter", (e) => {
-      square.style.backgroundColor = generateRandomColor();
+
+    square.addEventListener(
+      "mouseenter",
+      () => {
+        square.style.backgroundColor = generateRandomColor();
+      },
+      { once: true }
+    );
+
+    square.addEventListener("mouseenter", () => {
+      let brightness = square.dataset.brightness || 100;
+      square.style.filter = `brightness(${brightness}%)`;
+      square.dataset.brightness = Math.max(brightness - 10, 0);
     });
 
     container.appendChild(square);
