@@ -9,16 +9,8 @@ body {
 
 #container {
   margin: 0 auto;
-  max-height: 100vh;
+  max-height: 95vh;
   aspect-ratio: 1 / 1;
   display: flex;
   flex-wrap: wrap;
-}
-
-.square {
-  flex: 0 0 6.25%;
-}
-
-.color {
-  background-color: gray;
 }

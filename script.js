@@ -1,11 +1,37 @@
+const generateButton = document.querySelector("#generate");
 const container = document.querySelector("#container");
 
-for (let i = 0; i < 256; i++) {
-  const square = document.createElement("div");
-  square.classList.add("square");
-  square.addEventListener("mouseenter", (e) => {
-    square.classList.add("color");
-  });
+generateSquares(16);
 
-  container.appendChild(square);
+function generateSquares(squaresPerSide) {
+  const squares = squaresPerSide * squaresPerSide;
+
+  container.replaceChildren();
+  for (let i = 0; i < squares; i++) {
+    const square = document.createElement("div");
+    square.style.flexBasis = `${100 / squaresPerSide}%`;
+    square.addEventListener("mouseenter", (e) => {
+      square.style.backgroundColor = generateRandomColor();
+    });
+
+    container.appendChild(square);
+  }
+}
+
+generateButton.addEventListener("click", () => {
+  let squaresPerSide = +prompt("Number of squares per side (1-100):", 1);
+  squaresPerSide = clamp(squaresPerSide, 1, 100);
+  generateSquares(squaresPerSide);
+});
+
+function clamp(value, min, max) {
+  return Math.min(Math.max(value, min), max);
+}
+
+function generateRandomColor() {
+  return `rgb(${random(255)}, ${random(255)}, ${random(255)})`;
+}
+
+function random(max) {
+  return Math.floor(Math.random() * max);
 }
